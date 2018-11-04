@@ -1,0 +1,51 @@
+data = read.table('A0181923A.csv', sep="\t", header=FALSE)
+library(tseries)
+library(forecast)
+library(fGarch)
+library(rugarch)
+#1a
+monthlySales = data[,1]
+plot(monthlySales,type='l')
+acf(monthlySales)
+adf.test(monthlySales)
+#1b
+trend = lm(monthlySales~time(monthlySales))
+detrend_monthlySales= monthlySales-predict(trend)
+plot(detrend_monthlySales,type='l')
+#Q1_2
+time = cbind(1:300)
+fit.spec <- ugarchspec(variance.model     = list(model = "sGARCH",
+                                                 garchOrder = c(1, 1)), 
+                       mean.model         = list(armaOrder = c(0, 0),
+                                                 include.mean = TRUE,
+                                                 external.regressors = time), 
+                       distribution.model = "std")
+fit <- ugarchfit(data = monthlySales, spec = fit.spec)
+fit
+residual <- residuals(fit)
+Box.test(residual, lag = 10, type="Ljung")
+std_residual <- residual/sigma(fit)
+Box.test(std_residual^2, lag = 10, type="Ljung")
+
+qqnorm(residual)
+qqline(residual)
+# Dataset 2
+#4
+gains = data[,2]
+plot(gains)
+acf(gains)
+adf.test(gains)
+auto.arima(gains,max.P=0,max.Q=0,ic="aic")
+#5
+fit1 = garchFit(~arma(2,1)+garch(1,1),data=gains,cond.dist = 'std')
+res = residuals(fit1)
+acf(res)
+acf(res^2)
+res_std = res / fit1@sigma.t
+acf(res_std^2)
+#6
+fit1@fit$matcoef[,1]
+forecasts = predict(fit1,2)
+#7
+upper_ic = forecasts$meanForecast + 1.96*forecasts$standardDeviation
+lower_ic = forecasts$meanForecast - 1.96*forecasts$standardDeviation

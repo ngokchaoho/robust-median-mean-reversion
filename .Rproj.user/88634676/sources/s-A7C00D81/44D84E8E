@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1541224685554.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "44D84E8E",
+    "lastKnownWriteTime" : 1541313011,
+    "last_content_update" : 1541313011663,
+    "path" : "~/Downloads/Alpha/ARMA.R",
+    "project_path" : "ARMA.R",
+    "properties" : {
+        "cursorPosition" : "140,27",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

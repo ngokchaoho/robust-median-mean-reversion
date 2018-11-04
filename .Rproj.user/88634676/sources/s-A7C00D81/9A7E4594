@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540028472564.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9A7E4594",
+    "lastKnownWriteTime" : 1541330877,
+    "last_content_update" : 1541330877536,
+    "path" : "~/Downloads/Alpha/ra_result_analyze.R",
+    "project_path" : "ra_result_analyze.R",
+    "properties" : {
+        "cursorPosition" : "43,41",
+        "scrollLine" : "37",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

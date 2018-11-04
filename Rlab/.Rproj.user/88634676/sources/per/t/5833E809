@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538480346951.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "765011404",
+    "id" : "5833E809",
+    "lastKnownWriteTime" : 1538465559,
+    "last_content_update" : 1538465559,
+    "path" : "~/Downloads/Rlab/Rlab6.R",
+    "project_path" : "Rlab6.R",
+    "properties" : {
+        "cursorPosition" : "51,36",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
