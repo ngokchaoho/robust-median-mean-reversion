@@ -14,7 +14,7 @@ ra_mdd <- function(data) {
   mddval = max(mddvec)
   return(mddval)
 }
-ra_result_analyze <- function(data, cum_ret, cumsum_ret, daily_ret) {
+ra_result_analyze <- function(fid,data, cum_ret, cumsum_ret, daily_ret) {
   RET_RF = 1.000156
   NUM_TRADE = 252
   n = dim(data)[1]
@@ -66,5 +66,6 @@ ra_result_analyze <- function(data, cum_ret, cumsum_ret, daily_ret) {
   ra_ret[12] = ddval
   ra_ret[13] = mddval
   ra_ret[14] = cr
-  write.csv(file = "ra.csv",ra_ret)
+  names(ra_ret) = c("n","strategy_mu","market_mu","win_ratio","alpha","beta","t_stat","p_value","apy","stdev","sr","ddval","mddval","cr")
+  write.table(file = fid,ra_ret,col.names = FALSE)
 }

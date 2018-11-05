@@ -1,14 +1,7 @@
-  install.packages('R.matlab')
 
-  source("simplex.r")
-#download data
-  library("R.matlab")
-  path <- ('E:/nus-study/OLPS-master/OLPS-master/Data')
-  pathname <- file.path(path,'djia.mat')
-  data_1 <- as.vector(readMat(pathname))
-  data_matrix <- as.matrix(as.data.frame(data_1))
-  #class(data_matrix)
-  
+pamr_run <- function(fid, data, tc)
+ {
+  data_matrix=data
   t = nrow(data_matrix)
   m = ncol(data_matrix)
   
@@ -54,4 +47,45 @@
     eta = max(0,eta)
   #  eta
   }
-  #plot(seq(from = 1, to = t),cumpro_ret)
+  return(list(cum_ret,cumpro_ret,daily_ret))
+}
+
+ simplex_projection <- function(v,b)
+   {
+   if (b < 0)
+   {print('error')}
+   v = (v > 0) * v
+   u = sort(v, decreasing = TRUE)
+   sv = cumsum(u)
+   rho = tail(which(u > (sv - b)/c(1:length(u))),n = 1)
+   #print(rho)
+   #print((sv[rho]-b)/rho)
+   theta = max(0,(sv[rho] - b)/rho)
+   #print("theta")
+   #print(theta)
+   temp = v - theta
+   temp[temp < 0] = 0
+   w = temp
+   return(w)
+ }
+  
+ library(stats)
+ library(readxl)
+ path <- ('DATA(haolin)')
+ #input
+ pathname <- file.path(path,'TWSE.xlsx')
+ #data_1 <- as.vector(readMat(pathname))
+ data_matrix <- read_excel(pathname, sheet = "P4")
+ data_matrix <- data.matrix(data_matrix[5:nrow(data_matrix),2:ncol(data_matrix)])
+ data_matrix <- data_matrix[complete.cases(data_matrix),]
+ #data_matrix <- read.csv(pathname,sep=',',stringsAsFactors = FALSE,skip=3,header=TRUE)
+ #class(data_1)
+ #print(data_1)
+ #data_matrix <- as.matrix(as.data.frame(data_1))
+ #class(data_matrix)
+ fid = "pamr.txt"
+ tc = 0
+ result = pamr_run(fid,data_matrix,tc)
+ write.csv(file = "pamr.csv",result)
+ source("ra_result_analyze.R")
+ ra_result_analyze(paste(pathname,"pamrP4.csv",sep = '_'),data_matrix,as.numeric(result[[1]]),as.numeric(result[[2]]),as.numeric(result[[3]]))
