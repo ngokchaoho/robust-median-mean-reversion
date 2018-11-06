@@ -1,6 +1,6 @@
 install.packages("pracma")
 install.packages("R.matlab")
-setwd("G:\\rmr-master")
+
 
 source("ra_result_analyze.R")
 source("rmr.R")
@@ -13,7 +13,7 @@ source("ARMA.R")
 library("forecast")
 
 library("R.matlab")
-path <- ('G:\\rmr-master\\Data')
+path <- ('Data')
 #input
 pathname <- file.path(path,'djia.mat')
 data_1 <- as.vector(readMat(pathname))

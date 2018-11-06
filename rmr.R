@@ -120,22 +120,22 @@ simplex_projection <- function(v,b){
 
 
 #install.packages('R.matlab')
-#library("R.matlab")
+library("R.matlab")
 #install.packages("readxl")
 #install.packages("stats")
-library(stats)
-library(readxl)
-path <- ('DATA(haolin)')
+#library(stats)
+#library(readxl)
+path <- ('Data')
 #input
-pathname <- file.path(path,'BE500.xlsx')
-#data_1 <- as.vector(readMat(pathname))
-data_matrix <- read_excel(pathname, sheet = "P1")
-data_matrix <- data.matrix(data_matrix[5:nrow(data_matrix),2:ncol(data_matrix)])
-data_matrix <- data_matrix[complete.cases(data_matrix),]
+pathname <- file.path(path,'nyse-n.mat')
+data_1 <- as.vector(readMat(pathname))
+#data_matrix <- read_excel(pathname, sheet = "P4", skip=4, col_names = FALSE)
+#data_matrix <- data.matrix(data_matrix[,2:ncol(data_matrix)])
+#data_matrix <- data_matrix[complete.cases(data_matrix),]
 #data_matrix <- read.csv(pathname,sep=',',stringsAsFactors = FALSE,skip=3,header=TRUE)
 #class(data_1)
 #print(data_1)
-#data_matrix <- as.matrix(as.data.frame(data_1))
+data_matrix <- as.matrix(as.data.frame(data_1))
 #class(data_matrix)
 fid = "rmr.txt"
 #implementation
@@ -143,4 +143,4 @@ parameters = c(5, 5, 0)
 result = rmr(fid,data_matrix,parameters)
 write.csv(file = "rmr.csv",result)
 source("ra_result_analyze.R")
-ra_result_analyze(paste(pathname,"rmrP4.csv",sep = '_'),data_matrix,result[[1]],result[[2]],result[[3]])
+ra_result_analyze(paste(pathname,"rmr.csv",sep = '_'),data_matrix,result[[1]],result[[2]],result[[3]])

@@ -47,34 +47,27 @@ olmar_run <- function(fid,data_matrix)
 }
 
 
-# #plot(seq(from=1, to=n),cumpro_ret)
-# result[[1]]=as.numeric(cum_ret)
-# result[[2]]=as.numeric(cumpro_ret)
-# result[[3]]=as.numeric(daily_ret)
-# source("ra_result_analyze.R")
-# ra_result_analyze(data_matrix,result[[1]],result[[2]],result[[3]])
-
 #install.packages('R.matlab')
-#library("R.matlab")
+library("R.matlab")
 #install.packages("readxl")
 #install.packages("stats")
-library(stats)
-library(readxl)
-path <- ('DATA(haolin)')
+#library(stats)
+#library(readxl)
+path <- ('Data')
 #input
-pathname <- file.path(path,'TWSE.xlsx')
-#data_1 <- as.vector(readMat(pathname))
-data_matrix <- read_excel(pathname, sheet = "P4")
-data_matrix <- data.matrix(data_matrix[5:nrow(data_matrix),2:ncol(data_matrix)])
-data_matrix <- data_matrix[complete.cases(data_matrix),]
+pathname <- file.path(path,'tse.mat')
+data_1 <- as.vector(readMat(pathname))
+#data_matrix <- read_excel(pathname, sheet = "P4", skip=4, col_names = FALSE)
+#data_matrix <- data.matrix(data_matrix[,2:ncol(data_matrix)])
+#data_matrix <- data_matrix[complete.cases(data_matrix),]
 #data_matrix <- read.csv(pathname,sep=',',stringsAsFactors = FALSE,skip=3,header=TRUE)
 #class(data_1)
 #print(data_1)
-#data_matrix <- as.matrix(as.data.frame(data_1))
+data_matrix <- as.matrix(as.data.frame(data_1))
 #class(data_matrix)
-fid = "rmr.txt"
+fid = "olmar.txt"
 #implementation
 result = olmar_run(fid,data_matrix)
 write.csv(file = "olmar.csv",result)
 source("ra_result_analyze.R")
-ra_result_analyze(paste(pathname,"olmarP4.csv",sep = '_'),data_matrix,as.numeric(result[[1]]),as.numeric(result[[2]]),as.numeric(result[[3]]))
+ra_result_analyze(paste(pathname,"olmar.csv",sep = '_'),data_matrix,as.numeric(result[[1]]),as.numeric(result[[2]]),as.numeric(result[[3]]))
