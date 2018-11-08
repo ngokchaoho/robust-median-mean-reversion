@@ -11,7 +11,6 @@ pamr_run <- function(fid, data, tc)
   
     
   e = 0.5  
-  tc = 0
   SumReturn = 1
   day_weight = t(as.matrix(rep(1/m,times = m)))
   day_weight_o = t(as.matrix(rep(0,times = m)))

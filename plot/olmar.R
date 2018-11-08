@@ -1,4 +1,4 @@
-olmar_run <- function(fid,data_matrix,varagins)
+olmar_run <- function(fid,data_matrix,tc)
 {
 datamatrix1=data_matrix
 n = nrow(datamatrix1)
@@ -8,7 +8,6 @@ cumpro_ret = NULL
 daily_ret = NULL
 epsilon=10
 alpha=0.5
-tc=0
 sumreturn=1
 day_weight = as.matrix(rep(1/m,m))
 day_weight_o = as.matrix(rep(0,m))
