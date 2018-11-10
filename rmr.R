@@ -127,7 +127,7 @@ library("R.matlab")
 #library(readxl)
 path <- ('Data')
 #input
-pathname <- file.path(path,'nyse-n.mat')
+pathname <- file.path(path,'sp500.mat')
 data_1 <- as.vector(readMat(pathname))
 #data_matrix <- read_excel(pathname, sheet = "P4", skip=4, col_names = FALSE)
 #data_matrix <- data.matrix(data_matrix[,2:ncol(data_matrix)])
